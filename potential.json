@@ -1,0 +1,28 @@
+[
+    {
+        "lib": "scikit-learn",
+        "sha": "07e1a6bb9d6d7eb7fdcc4bb15e8ec7e6c3e6117e",
+        "issue_type": "removec",
+        "granularity": "func",
+        "filepath": "sklearn/cross_decomposition/_pls.py",
+        "class": "PLSRegression",
+        "func": "__init__",
+        "exec_func": "__init__",
+        "params": ["algorithm", "n_iter_"],
+        "constraints": "(algorithm = 'svd') -> (n_iter_ = 'None')",
+        "oracle": "False"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "07e1a6bb9d6d7eb7fdcc4bb15e8ec7e6c3e6117e",
+        "issue_type": "removep",
+        "granularity": "func",
+        "filepath": "sklearn/cross_decomposition/_pls.py",
+        "class": "CCA",
+        "func": "__init__",
+        "exec_func": "__init__",
+        "params": ["algorithm", "max_iter"],
+        "constraints": "(algorithm = 'nipals') -> (max_iter != 'None')",
+        "oracle": "False"
+    }
+]
