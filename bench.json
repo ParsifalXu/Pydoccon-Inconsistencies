@@ -259,6 +259,45 @@
         "params": ["error_on_new", "features"],
         "constraints": "(features = 'missing-only') ^ (error_on_new != 'None')",
         "oracle": "True"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "5147fd09c6a063188efde444f47bd006fa5f95f0",
+        "issue_type": "addc",
+        "granularity": "func",
+        "filepath": "sklearn/linear_model/sag.py",
+        "class": "NA",
+        "func": "get_auto_step_size",
+        "exec_func": "get_auto_step_size",
+        "params": ["is_saga", "n_samples"],
+        "constraints": "(is_saga = 'True') ^ (n_samples = 'exist')",
+        "oracle": "True"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "b513081c658317eabafd713d6d5d18f7a5a30a73",
+        "issue_type": "addc",
+        "granularity": "func",
+        "filepath": "sklearn/cluster/_spectral.py",
+        "class": "SpectralClustering",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": ["affinity", "n_jobs"],
+        "constraints": "(affinity = 'nearest_neighbors') ^ (n_jobs = 'exist')",
+        "oracle": "True"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "b513081c658317eabafd713d6d5d18f7a5a30a73",
+        "issue_type": "addc",
+        "granularity": "func",
+        "filepath": "sklearn/cluster/_spectral.py",
+        "class": "SpectralClustering",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": ["affinity", "n_jobs"],
+        "constraints": "(affinity = 'precomputed_nearest_neighbors') ^ (n_jobs = 'exist')",
+        "oracle": "True"
     }
 ]
 
