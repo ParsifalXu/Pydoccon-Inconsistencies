@@ -6,3 +6,4 @@ addc - Add Constraint
 removec - Remove Constraint
 removep - Remove Parameter
 missing - Document Missing
+modify - Modify Description
