@@ -32,6 +32,7 @@ def extract(cons):
     modifiedfilepath = cons["filepath"].replace("/", "--")
     cls = cons["class"]
     func = cons["func"]
+    # if cons[""]
 
     root = os.getcwd()
     os.chdir(f"{_DOWNLOAD_DIR}/{lib}")
@@ -115,7 +116,6 @@ def parse_and_save(project, doc_path, output_path):
         args, attributes = parse_numpy_style_docstring(doc_path)
     except:
         print("Format Wrong")
-        print(doc_path)
         return
     try:
         if not args:
@@ -306,12 +306,12 @@ if __name__ in "__main__":
         os.mkdir(_FILES_DIR)
 
     for constraint in constraints:
-    #     lib = constraint["lib"]
+        lib = constraint["lib"]
         
-    #     if not os.path.exists(f"{_DOWNLOAD_DIR}/{lib}"):
-    #         download_library(lib)   
+        if not os.path.exists(f"{_DOWNLOAD_DIR}/{lib}"):
+            download_library(lib)   
         
-    #     extract(constraint)
+        extract(constraint)
     
         findpa(constraint)
         
