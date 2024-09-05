@@ -118,19 +118,6 @@
     },
     {
         "lib": "scikit-learn",
-        "sha": "1924b0aa8905dd6a86053028dacc51e5265fa792",
-        "issue_type": "addc",
-        "granularity": "class",
-        "filepath": "sklearn/cluster/_spectral.py",
-        "class": "SpectralClustering",
-        "func": "fit",
-        "exec_func": "fit",
-        "params": ["n_job", "affinity"],
-        "constraints": "((affinity = 'nearest_neighbors') || (affinity = 'precomputed_nearest_neighbors)) -> (n_jobs != 'None')",
-        "oracle": "True"
-    },
-    {
-        "lib": "scikit-learn",
         "sha": "6e9e1c77c815394a9ec8e6d4fd678edfc44d055a",
         "issue_type": "missing",
         "granularity": "class",
