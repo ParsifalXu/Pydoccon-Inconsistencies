@@ -1,20 +1,3 @@
-"""
-Sequential feature selection
-"""
-from numbers import Integral, Real
-
-import numpy as np
-
-from ._base import SelectorMixin
-from ..base import BaseEstimator, MetaEstimatorMixin, clone, is_classifier
-from ..utils._param_validation import HasMethods, Interval, StrOptions
-from ..utils._param_validation import RealNotInt
-from ..utils._tags import _safe_tags
-from ..utils.validation import check_is_fitted
-from ..model_selection import cross_val_score, check_cv
-from ..metrics import get_scorer_names
-
-
 class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator):
     """Transformer that performs Sequential Feature Selection.
 
@@ -145,32 +128,9 @@ class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator
     >>> sfs.transform(X).shape
     (150, 3)
     """
+    _parameter_constraints: dict = {'estimator': [HasMethods(['fit'])], 'n_features_to_select': [StrOptions({'auto'}), Interval(RealNotInt, 0, 1, closed='right'), Interval(Integral, 0, None, closed='neither')], 'tol': [None, Interval(Real, None, None, closed='neither')], 'direction': [StrOptions({'forward', 'backward'})], 'scoring': [None, StrOptions(set(get_scorer_names())), callable], 'cv': ['cv_object'], 'n_jobs': [None, Integral]}
 
-    _parameter_constraints: dict = {
-        "estimator": [HasMethods(["fit"])],
-        "n_features_to_select": [
-            StrOptions({"auto"}),
-            Interval(RealNotInt, 0, 1, closed="right"),
-            Interval(Integral, 0, None, closed="neither"),
-        ],
-        "tol": [None, Interval(Real, None, None, closed="neither")],
-        "direction": [StrOptions({"forward", "backward"})],
-        "scoring": [None, StrOptions(set(get_scorer_names())), callable],
-        "cv": ["cv_object"],
-        "n_jobs": [None, Integral],
-    }
-
-    def __init__(
-        self,
-        estimator,
-        *,
-        n_features_to_select="auto",
-        tol=None,
-        direction="forward",
-        scoring=None,
-        cv=5,
-        n_jobs=None,
-    ):
+    def __init__(self, estimator, *, n_features_to_select='auto', tol=None, direction='forward', scoring=None, cv=5, n_jobs=None):
         self.estimator = estimator
         self.n_features_to_select = n_features_to_select
         self.tol = tol
@@ -198,97 +158,56 @@ class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator
             Returns the instance itself.
         """
         self._validate_params()
-
         tags = self._get_tags()
-        X = self._validate_data(
-            X,
-            accept_sparse="csc",
-            ensure_min_features=2,
-            force_all_finite=not tags.get("allow_nan", True),
-        )
+        X = self._validate_data(X, accept_sparse='csc', ensure_min_features=2, force_all_finite=not tags.get('allow_nan', True))
         n_features = X.shape[1]
-
-        if self.n_features_to_select == "auto":
+        if self.n_features_to_select == 'auto':
             if self.tol is not None:
-                # With auto feature selection, `n_features_to_select_` will be updated
-                # to `support_.sum()` after features are selected.
                 self.n_features_to_select_ = n_features - 1
             else:
                 self.n_features_to_select_ = n_features // 2
         elif isinstance(self.n_features_to_select, Integral):
             if self.n_features_to_select >= n_features:
-                raise ValueError("n_features_to_select must be < n_features.")
+                raise ValueError('n_features_to_select must be < n_features.')
             self.n_features_to_select_ = self.n_features_to_select
         elif isinstance(self.n_features_to_select, Real):
             self.n_features_to_select_ = int(n_features * self.n_features_to_select)
-
-        if self.tol is not None and self.tol < 0 and self.direction == "forward":
-            raise ValueError("tol must be positive when doing forward selection")
-
+        if self.tol is not None and self.tol < 0 and (self.direction == 'forward'):
+            raise ValueError('tol must be positive when doing forward selection')
         cv = check_cv(self.cv, y, classifier=is_classifier(self.estimator))
-
         cloned_estimator = clone(self.estimator)
-
-        # the current mask corresponds to the set of features:
-        # - that we have already *selected* if we do forward selection
-        # - that we have already *excluded* if we do backward selection
         current_mask = np.zeros(shape=n_features, dtype=bool)
-        n_iterations = (
-            self.n_features_to_select_
-            if self.n_features_to_select == "auto" or self.direction == "forward"
-            else n_features - self.n_features_to_select_
-        )
-
+        n_iterations = self.n_features_to_select_ if self.n_features_to_select == 'auto' or self.direction == 'forward' else n_features - self.n_features_to_select_
         old_score = -np.inf
-        is_auto_select = self.tol is not None and self.n_features_to_select == "auto"
+        is_auto_select = self.tol is not None and self.n_features_to_select == 'auto'
         for _ in range(n_iterations):
-            new_feature_idx, new_score = self._get_best_new_feature_score(
-                cloned_estimator, X, y, cv, current_mask
-            )
-            if is_auto_select and ((new_score - old_score) < self.tol):
+            new_feature_idx, new_score = self._get_best_new_feature_score(cloned_estimator, X, y, cv, current_mask)
+            if is_auto_select and new_score - old_score < self.tol:
                 break
-
             old_score = new_score
             current_mask[new_feature_idx] = True
-
-        if self.direction == "backward":
+        if self.direction == 'backward':
             current_mask = ~current_mask
-
         self.support_ = current_mask
         self.n_features_to_select_ = self.support_.sum()
-
         return self
 
     def _get_best_new_feature_score(self, estimator, X, y, cv, current_mask):
-        # Return the best new feature and its score to add to the current_mask,
-        # i.e. return the best new feature and its score to add (resp. remove)
-        # when doing forward selection (resp. backward selection).
-        # Feature will be added if the current score and past score are greater
-        # than tol when n_feature is auto,
         candidate_feature_indices = np.flatnonzero(~current_mask)
         scores = {}
         for feature_idx in candidate_feature_indices:
             candidate_mask = current_mask.copy()
             candidate_mask[feature_idx] = True
-            if self.direction == "backward":
+            if self.direction == 'backward':
                 candidate_mask = ~candidate_mask
             X_new = X[:, candidate_mask]
-            scores[feature_idx] = cross_val_score(
-                estimator,
-                X_new,
-                y,
-                cv=cv,
-                scoring=self.scoring,
-                n_jobs=self.n_jobs,
-            ).mean()
+            scores[feature_idx] = cross_val_score(estimator, X_new, y, cv=cv, scoring=self.scoring, n_jobs=self.n_jobs).mean()
         new_feature_idx = max(scores, key=lambda feature_idx: scores[feature_idx])
-        return new_feature_idx, scores[new_feature_idx]
+        return (new_feature_idx, scores[new_feature_idx])
 
     def _get_support_mask(self):
         check_is_fitted(self)
         return self.support_
 
     def _more_tags(self):
-        return {
-            "allow_nan": _safe_tags(self.estimator, key="allow_nan"),
-        }
+        return {'allow_nan': _safe_tags(self.estimator, key='allow_nan')}
