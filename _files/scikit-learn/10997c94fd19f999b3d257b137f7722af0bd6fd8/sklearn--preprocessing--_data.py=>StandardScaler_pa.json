@@ -1,0 +1,26 @@
+{
+    "param": {
+        "copy": "bool, default=True If False, try to avoid a copy and do inplace scaling instead. This is not guaranteed to always work inplace; e.g. if the data is not a NumPy array or scipy.sparse CSR matrix, a copy may still be returned.",
+        "with_mean": "bool, default=True If True, center the data before scaling. This does not work (and will raise an exception) when attempted on sparse matrices, because centering them entails building a dense matrix which in common use cases is likely to be too large to fit in memory.",
+        "with_std": "bool, default=True If True, scale the data to unit variance (or equivalently, unit standard deviation)."
+    },
+    "attr": {
+        "scale_": "ndarray of shape (n_features, ) or None Per feature relative scaling of the data to achieve zero mean and unit variance. Generally this is calculated using `np.sqrt(var_)`. If a variance is zero, we can't achieve unit variance, and the data is left as-is, giving a scaling factor of 1. `scale_` is equal to `None` when `with_std=False`.  .. versionadded:: 0.17 *scale_*",
+        "mean_": "ndarray of shape (n_features, ) or None The mean value for each feature in the training set. Equal to ``None`` when ``with_mean=False`` and ``with_std=False``.",
+        "var_": "ndarray of shape (n_features, ) or None The variance for each feature in the training set. Used to compute `scale_`. Equal to ``None`` when ``with_mean=False`` and ``with_std=False``.",
+        "n_features_in_": "int Number of features seen during :term:`fit`.  .. versionadded:: 0.24",
+        "feature_names_in_": "ndarray of shape (`n_features_in_`, ) Names of features seen during :term:`fit`. Defined only when `X` has feature names that are all strings.  .. versionadded:: 1.0",
+        "n_samples_seen_": "int or ndarray of shape (n_features, ) The number of samples processed by the estimator for each feature. If there are no missing samples, the ``n_samples_seen`` will be an integer, otherwise it will be an array of dtype int. If `sample_weights` are used it will be a float (if no missing data) or an array of dtype float that sums the weights seen so far. Will be reset on new calls to fit, but increments across ``partial_fit`` calls."
+    },
+    "pa": {
+        "copy": "bool, default=True If False, try to avoid a copy and do inplace scaling instead. This is not guaranteed to always work inplace; e.g. if the data is not a NumPy array or scipy.sparse CSR matrix, a copy may still be returned.",
+        "with_mean": "bool, default=True If True, center the data before scaling. This does not work (and will raise an exception) when attempted on sparse matrices, because centering them entails building a dense matrix which in common use cases is likely to be too large to fit in memory.",
+        "with_std": "bool, default=True If True, scale the data to unit variance (or equivalently, unit standard deviation).",
+        "scale_": "ndarray of shape (n_features, ) or None Per feature relative scaling of the data to achieve zero mean and unit variance. Generally this is calculated using `np.sqrt(var_)`. If a variance is zero, we can't achieve unit variance, and the data is left as-is, giving a scaling factor of 1. `scale_` is equal to `None` when `with_std=False`.  .. versionadded:: 0.17 *scale_*",
+        "mean_": "ndarray of shape (n_features, ) or None The mean value for each feature in the training set. Equal to ``None`` when ``with_mean=False`` and ``with_std=False``.",
+        "var_": "ndarray of shape (n_features, ) or None The variance for each feature in the training set. Used to compute `scale_`. Equal to ``None`` when ``with_mean=False`` and ``with_std=False``.",
+        "n_features_in_": "int Number of features seen during :term:`fit`.  .. versionadded:: 0.24",
+        "feature_names_in_": "ndarray of shape (`n_features_in_`, ) Names of features seen during :term:`fit`. Defined only when `X` has feature names that are all strings.  .. versionadded:: 1.0",
+        "n_samples_seen_": "int or ndarray of shape (n_features, ) The number of samples processed by the estimator for each feature. If there are no missing samples, the ``n_samples_seen`` will be an integer, otherwise it will be an array of dtype int. If `sample_weights` are used it will be a float (if no missing data) or an array of dtype float that sums the weights seen so far. Will be reset on new calls to fit, but increments across ``partial_fit`` calls."
+    }
+}

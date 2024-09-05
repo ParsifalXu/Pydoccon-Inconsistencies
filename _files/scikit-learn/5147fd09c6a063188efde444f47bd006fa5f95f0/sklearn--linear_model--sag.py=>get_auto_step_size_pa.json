@@ -1,0 +1,19 @@
+{
+    "param": {
+        "max_squared_sum": "float Maximum squared sum of X over samples.",
+        "alpha_scaled": "float Constant that multiplies the regularization term, scaled by 1. / n_samples, the number of samples.",
+        "loss": "string, in {\"log\", \"squared\"} The loss function used in SAG solver.",
+        "fit_intercept": "bool Specifies if a constant (a.k.a. bias or intercept) will be added to the decision function.",
+        "n_samples": "int, optional Number of rows in X. Useful if is_saga=True.",
+        "is_saga": "boolean, optional Whether to return step size for the SAGA algorithm or the SAG algorithm."
+    },
+    "attr": {},
+    "pa": {
+        "max_squared_sum": "float Maximum squared sum of X over samples.",
+        "alpha_scaled": "float Constant that multiplies the regularization term, scaled by 1. / n_samples, the number of samples.",
+        "loss": "string, in {\"log\", \"squared\"} The loss function used in SAG solver.",
+        "fit_intercept": "bool Specifies if a constant (a.k.a. bias or intercept) will be added to the decision function.",
+        "n_samples": "int, optional Number of rows in X. Useful if is_saga=True.",
+        "is_saga": "boolean, optional Whether to return step size for the SAGA algorithm or the SAG algorithm."
+    }
+}

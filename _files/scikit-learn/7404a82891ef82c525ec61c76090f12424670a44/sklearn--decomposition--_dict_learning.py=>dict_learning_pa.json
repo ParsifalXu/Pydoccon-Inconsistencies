@@ -1,0 +1,31 @@
+{
+    "param": {
+        "X": "ndarray of shape (n_samples, n_features) Data matrix.",
+        "n_components": "int Number of dictionary atoms to extract.",
+        "alpha": "int Sparsity controlling parameter.",
+        "max_iter": "int, default=100 Maximum number of iterations to perform.",
+        "tol": "float, default=1e-8 Tolerance for the stopping condition.",
+        "method": "{'lars', 'cd'}, default='lars' The method used:  * `'lars'`: uses the least angle regression method to solve the lasso problem (`linear_model.lars_path`); * `'cd'`: uses the coordinate descent method to compute the Lasso solution (`linear_model.Lasso`). Lars will be faster if the estimated components are sparse.",
+        "n_jobs": "int, default=None Number of parallel jobs to run. ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context. ``-1`` means using all processors. See :term:`Glossary <n_jobs>` for more details.",
+        "dict_init": "ndarray of shape (n_components, n_features), default=None Initial value for the dictionary for warm restart scenarios. Only used if `code_init` and `dict_init` are not None.",
+        "code_init": "ndarray of shape (n_samples, n_components), default=None Initial value for the sparse code for warm restart scenarios. Only used if `code_init` and `dict_init` are not None.",
+        "callback": "callable, default=None Callable that gets invoked every five iterations",
+        "verbose": "bool, default=False To control the verbosity of the procedure.",
+        "random_state": "int, RandomState instance or None, default=None Used for randomly initializing the dictionary. Pass an int for reproducible results across multiple function calls. See :term:`Glossary <random_state>`."
+    },
+    "attr": {},
+    "pa": {
+        "X": "ndarray of shape (n_samples, n_features) Data matrix.",
+        "n_components": "int Number of dictionary atoms to extract.",
+        "alpha": "int Sparsity controlling parameter.",
+        "max_iter": "int, default=100 Maximum number of iterations to perform.",
+        "tol": "float, default=1e-8 Tolerance for the stopping condition.",
+        "method": "{'lars', 'cd'}, default='lars' The method used:  * `'lars'`: uses the least angle regression method to solve the lasso problem (`linear_model.lars_path`); * `'cd'`: uses the coordinate descent method to compute the Lasso solution (`linear_model.Lasso`). Lars will be faster if the estimated components are sparse.",
+        "n_jobs": "int, default=None Number of parallel jobs to run. ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context. ``-1`` means using all processors. See :term:`Glossary <n_jobs>` for more details.",
+        "dict_init": "ndarray of shape (n_components, n_features), default=None Initial value for the dictionary for warm restart scenarios. Only used if `code_init` and `dict_init` are not None.",
+        "code_init": "ndarray of shape (n_samples, n_components), default=None Initial value for the sparse code for warm restart scenarios. Only used if `code_init` and `dict_init` are not None.",
+        "callback": "callable, default=None Callable that gets invoked every five iterations",
+        "verbose": "bool, default=False To control the verbosity of the procedure.",
+        "random_state": "int, RandomState instance or None, default=None Used for randomly initializing the dictionary. Pass an int for reproducible results across multiple function calls. See :term:`Glossary <random_state>`."
+    }
+}
