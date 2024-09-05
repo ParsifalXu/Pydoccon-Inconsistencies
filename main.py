@@ -32,7 +32,7 @@ def extract(cons):
     modifiedfilepath = cons["filepath"].replace("/", "--")
     cls = cons["class"]
     func = cons["func"]
-    # if cons[""]
+    docfrom = cons["docfrom"]
 
     root = os.getcwd()
     os.chdir(f"{_DOWNLOAD_DIR}/{lib}")
@@ -40,11 +40,11 @@ def extract(cons):
     sub.run(f"git checkout {sha}", shell=True, stdout=sub.DEVNULL, stderr=sub.DEVNULL)
 
 
-    extract_content(lib, sha, filepath, modifiedfilepath, cls, func)
+    extract_content(lib, sha, filepath, modifiedfilepath, cls, func, docfrom)
     os.chdir(root)
 
 
-def extract_content(lib, sha, filepath, modifiedfilepath, cls, func):    
+def extract_content(lib, sha, filepath, modifiedfilepath, cls, func, docfrom):    
     with open(f"{_DOWNLOAD_DIR}/{lib}/{filepath}", 'r') as f:
         content = f.read()
     f.close()
@@ -54,9 +54,10 @@ def extract_content(lib, sha, filepath, modifiedfilepath, cls, func):
     flag = "Parameters\n-----"
     
     class ClassAndFunctionVisitor(ast.NodeVisitor):
-        def __init__(self, cls, func):
+        def __init__(self, cls, func, docfrom):
             self.cls = cls
             self.func = func
+            self.docfrom = docfrom
 
         def visit_ClassDef(self, node):
             docstring = ast.get_docstring(node)
@@ -64,10 +65,11 @@ def extract_content(lib, sha, filepath, modifiedfilepath, cls, func):
                 node.decorator_list = []
                 if not os.path.exists(f'{_FILES_DIR}/{lib}/{sha}'):
                     os.makedirs(f'{_FILES_DIR}/{lib}/{sha}')
-                if node.name == cls:
+                if node.name == self.cls:
                     with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}.py', 'w') as fc:
                         fc.write(ast.unparse(node))
-                    with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}_docstring.txt', 'w') as fd:
+                if node.name == self.docfrom:
+                    with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.cls}_docstring.txt', 'w') as fd:
                         fd.write(docstring)
             self.generic_visit(node)
 
@@ -81,7 +83,8 @@ def extract_content(lib, sha, filepath, modifiedfilepath, cls, func):
                     if node.name == func:
                         with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}.py', 'w') as fc:
                             fc.write(ast.unparse(node))
-                        with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}_docstring.txt', 'w') as fd:
+                    if node.name == self.docfrom:
+                        with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.func}_docstring.txt', 'w') as fd:
                             fd.write(docstring)
             self.generic_visit(node) # continue to traverse nodes
 
@@ -92,7 +95,7 @@ def extract_content(lib, sha, filepath, modifiedfilepath, cls, func):
 
     tree = ast.parse(content)
     add_parent_info(tree)
-    visitor = ClassAndFunctionVisitor(cls, func)
+    visitor = ClassAndFunctionVisitor(cls, func, docfrom)
     visitor.visit(tree)
     
 # ========== Find ==========
