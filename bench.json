@@ -47,6 +47,7 @@
     {
         "lib": "scikit-learn",
         "sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
         "issue_type": "logic",
         "granularity": "class",
         "filepath": "sklearn/preprocessing/_data.py",
