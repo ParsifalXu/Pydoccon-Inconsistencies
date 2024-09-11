@@ -1,0 +1,23 @@
+{
+    "param": {
+        "emp_cov": "ndarray of shape (n_features, n_features) Empirical covariance from which to compute the covariance estimate.",
+        "alpha": "float The regularization parameter: the higher alpha, the more regularization, the sparser the inverse covariance. Range is (0, inf].",
+        "cov_init": "array of shape (n_features, n_features), default=None The initial guess for the covariance. If None, then the empirical covariance is used.",
+        "mode": "{'cd', 'lars'}, default='cd' The Lasso solver to use: coordinate descent or LARS. Use LARS for very sparse underlying graphs, where p > n. Elsewhere prefer cd which is more numerically stable.",
+        "tol": "float, default=1e-4 The tolerance to declare convergence: if the dual gap goes below this value, iterations are stopped. Range is (0, inf].",
+        "enet_tol": "float, default=1e-4 The tolerance for the elastic net solver used to calculate the descent direction. This parameter controls the accuracy of the search direction for a given column update, not of the overall parameter estimate. Only used for mode='cd'. Range is (0, inf].",
+        "max_iter": "int, default=100 The maximum number of iterations.",
+        "verbose": "bool, default=False If verbose is True, the objective function and dual gap are printed at each iteration."
+    },
+    "attr": {},
+    "pa": {
+        "emp_cov": "ndarray of shape (n_features, n_features) Empirical covariance from which to compute the covariance estimate.",
+        "alpha": "float The regularization parameter: the higher alpha, the more regularization, the sparser the inverse covariance. Range is (0, inf].",
+        "cov_init": "array of shape (n_features, n_features), default=None The initial guess for the covariance. If None, then the empirical covariance is used.",
+        "mode": "{'cd', 'lars'}, default='cd' The Lasso solver to use: coordinate descent or LARS. Use LARS for very sparse underlying graphs, where p > n. Elsewhere prefer cd which is more numerically stable.",
+        "tol": "float, default=1e-4 The tolerance to declare convergence: if the dual gap goes below this value, iterations are stopped. Range is (0, inf].",
+        "enet_tol": "float, default=1e-4 The tolerance for the elastic net solver used to calculate the descent direction. This parameter controls the accuracy of the search direction for a given column update, not of the overall parameter estimate. Only used for mode='cd'. Range is (0, inf].",
+        "max_iter": "int, default=100 The maximum number of iterations.",
+        "verbose": "bool, default=False If verbose is True, the objective function and dual gap are printed at each iteration."
+    }
+}

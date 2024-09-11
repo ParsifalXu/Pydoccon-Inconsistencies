@@ -39,8 +39,10 @@ def extract(cons):
     sub.run(f"git checkout -f main", shell=True, stdout=sub.DEVNULL, stderr=sub.DEVNULL)
     sub.run(f"git checkout {sha}", shell=True, stdout=sub.DEVNULL, stderr=sub.DEVNULL)
 
-
-    extract_content(lib, sha, filepath, modifiedfilepath, cls, func, docfrom)
+    try:
+        extract_content(lib, sha, filepath, modifiedfilepath, cls, func, docfrom)
+    except:
+        print(f"**{lib}\n{sha}\n{filepath}")
     os.chdir(root)
 
 
@@ -66,7 +68,7 @@ def extract_content(lib, sha, filepath, modifiedfilepath, cls, func, docfrom):
                 if not os.path.exists(f'{_FILES_DIR}/{lib}/{sha}'):
                     os.makedirs(f'{_FILES_DIR}/{lib}/{sha}')
                 if node.name == self.cls:
-                    with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}.py', 'w') as fc:
+                    with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.cls}.py', 'w') as fc:
                         fc.write(ast.unparse(node))
                 if node.name == self.docfrom:
                     with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.cls}_docstring.txt', 'w') as fd:
@@ -80,12 +82,25 @@ def extract_content(lib, sha, filepath, modifiedfilepath, cls, func, docfrom):
                     node.decorator_list = []
                     if not os.path.exists(f'{_FILES_DIR}/{lib}/{sha}'):
                         os.makedirs(f'{_FILES_DIR}/{lib}/{sha}')
-                    if node.name == func:
-                        with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}.py', 'w') as fc:
+                    if node.name == self.func:
+                        with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.func}.py', 'w') as fc:
                             fc.write(ast.unparse(node))
                     if node.name == self.docfrom:
                         with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.func}_docstring.txt', 'w') as fd:
                             fd.write(docstring)
+            else:
+                if node.name == self.docfrom:
+                    docstring = ast.get_docstring(node)
+                    if docstring and flag in docstring:
+                        node.decorator_list = []
+                        if not os.path.exists(f'{_FILES_DIR}/{lib}/{sha}'):
+                            os.makedirs(f'{_FILES_DIR}/{lib}/{sha}')
+                        # if node.name == func:
+                        #     with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{node.name}.py', 'w') as fc:
+                        #         fc.write(ast.unparse(node))
+                        if node.name == self.docfrom:
+                            with open(f'{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{self.cls}_docstring.txt', 'w') as fd:
+                                fd.write(docstring)
             self.generic_visit(node) # continue to traverse nodes
 
     def add_parent_info(node):
@@ -112,13 +127,14 @@ def findpa(cons):
     else:
         doc_path = f"{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{cls}_docstring.txt"
         output_path = f"{_FILES_DIR}/{lib}/{sha}/{modifiedfilepath}=>{cls}_pa.json"
-    parse_and_save(lib, doc_path, output_path)
+    parse_and_save(lib, doc_path, output_path, sha)
 
-def parse_and_save(project, doc_path, output_path):
+def parse_and_save(project, doc_path, output_path, sha):
     try:
         args, attributes = parse_numpy_style_docstring(doc_path)
     except:
         print("Format Wrong")
+        print(f"=={project}: {sha}={doc_path}")
         return
     try:
         if not args:
@@ -314,7 +330,7 @@ if __name__ in "__main__":
         if not os.path.exists(f"{_DOWNLOAD_DIR}/{lib}"):
             download_library(lib)   
         
+        # if constraint["sha"] == "218ab0930e477337ece6c46d497c14d447352d8a":
         extract(constraint)
-    
         findpa(constraint)
         

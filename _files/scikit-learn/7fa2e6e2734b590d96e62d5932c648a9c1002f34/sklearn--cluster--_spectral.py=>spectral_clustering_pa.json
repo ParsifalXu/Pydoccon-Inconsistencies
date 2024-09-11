@@ -1,0 +1,25 @@
+{
+    "param": {
+        "affinity": "{array-like, sparse matrix} of shape (n_samples, n_samples) The affinity matrix describing the relationship of the samples to embed. **Must be symmetric**.  Possible examples: - adjacency matrix of a graph, - heat kernel of the pairwise distance matrix of the samples, - symmetric k-nearest neighbours connectivity matrix of the samples.",
+        "n_clusters": "int, default=None Number of clusters to extract.",
+        "n_components": "int, default=n_clusters Number of eigenvectors to use for the spectral embedding",
+        "eigen_solver": "{None, 'arpack', 'lobpcg', or 'amg'} The eigenvalue decomposition strategy to use. AMG requires pyamg to be installed. It can be faster on very large, sparse problems, but may also lead to instabilities. If None, then ``'arpack'`` is used.",
+        "random_state": "int, RandomState instance, default=None A pseudo random number generator used for the initialization of the lobpcg eigenvectors decomposition when eigen_solver == 'amg' and by the K-Means initialization. Use an int to make the randomness deterministic. See :term:`Glossary <random_state>`.",
+        "n_init": "int, default=10 Number of time the k-means algorithm will be run with different centroid seeds. The final results will be the best output of n_init consecutive runs in terms of inertia. Only used if ``assign_labels='kmeans'``.",
+        "eigen_tol": "float, default=0.0 Stopping criterion for eigendecomposition of the Laplacian matrix when using arpack eigen_solver.",
+        "assign_labels": "{'kmeans', 'discretize'}, default='kmeans' The strategy to use to assign labels in the embedding space.  There are two ways to assign labels after the Laplacian embedding.  k-means can be applied and is a popular choice. But it can also be sensitive to initialization. Discretization is another approach which is less sensitive to random initialization. See the 'Multiclass spectral clustering' paper referenced below for more details on the discretization approach.",
+        "verbose": "bool, default=False Verbosity mode.  .. versionadded:: 0.24"
+    },
+    "attr": {},
+    "pa": {
+        "affinity": "{array-like, sparse matrix} of shape (n_samples, n_samples) The affinity matrix describing the relationship of the samples to embed. **Must be symmetric**.  Possible examples: - adjacency matrix of a graph, - heat kernel of the pairwise distance matrix of the samples, - symmetric k-nearest neighbours connectivity matrix of the samples.",
+        "n_clusters": "int, default=None Number of clusters to extract.",
+        "n_components": "int, default=n_clusters Number of eigenvectors to use for the spectral embedding",
+        "eigen_solver": "{None, 'arpack', 'lobpcg', or 'amg'} The eigenvalue decomposition strategy to use. AMG requires pyamg to be installed. It can be faster on very large, sparse problems, but may also lead to instabilities. If None, then ``'arpack'`` is used.",
+        "random_state": "int, RandomState instance, default=None A pseudo random number generator used for the initialization of the lobpcg eigenvectors decomposition when eigen_solver == 'amg' and by the K-Means initialization. Use an int to make the randomness deterministic. See :term:`Glossary <random_state>`.",
+        "n_init": "int, default=10 Number of time the k-means algorithm will be run with different centroid seeds. The final results will be the best output of n_init consecutive runs in terms of inertia. Only used if ``assign_labels='kmeans'``.",
+        "eigen_tol": "float, default=0.0 Stopping criterion for eigendecomposition of the Laplacian matrix when using arpack eigen_solver.",
+        "assign_labels": "{'kmeans', 'discretize'}, default='kmeans' The strategy to use to assign labels in the embedding space.  There are two ways to assign labels after the Laplacian embedding.  k-means can be applied and is a popular choice. But it can also be sensitive to initialization. Discretization is another approach which is less sensitive to random initialization. See the 'Multiclass spectral clustering' paper referenced below for more details on the discretization approach.",
+        "verbose": "bool, default=False Verbosity mode.  .. versionadded:: 0.24"
+    }
+}

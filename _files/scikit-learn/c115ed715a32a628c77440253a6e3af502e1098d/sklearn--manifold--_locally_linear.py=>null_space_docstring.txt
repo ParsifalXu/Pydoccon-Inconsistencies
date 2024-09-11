@@ -1,0 +1,37 @@
+Find the null space of a matrix M.
+
+Parameters
+----------
+M : {array, matrix, sparse matrix, LinearOperator}
+    Input covariance matrix: should be symmetric positive semi-definite
+
+k : int
+    Number of eigenvalues/vectors to return
+
+k_skip : int, default=1
+    Number of low eigenvalues to skip.
+
+eigen_solver : {'auto', 'arpack', 'dense'}, default='arpack'
+    auto : algorithm will attempt to choose the best method for input data
+    arpack : use arnoldi iteration in shift-invert mode.
+                For this method, M may be a dense matrix, sparse matrix,
+                or general linear operator.
+                Warning: ARPACK can be unstable for some problems.  It is
+                best to try several random seeds in order to check results.
+    dense  : use standard dense matrix operations for the eigenvalue
+                decomposition.  For this method, M must be an array
+                or matrix type.  This method should be avoided for
+                large problems.
+
+tol : float, default=1e-6
+    Tolerance for 'arpack' method.
+    Not used if eigen_solver=='dense'.
+
+max_iter : int, default=100
+    Maximum number of iterations for 'arpack' method.
+    Not used if eigen_solver=='dense'
+
+random_state : int, RandomState instance, default=None
+    Determines the random number generator when ``solver`` == 'arpack'.
+    Pass an int for reproducible results across multiple function calls.
+    See :term: `Glossary <random_state>`.

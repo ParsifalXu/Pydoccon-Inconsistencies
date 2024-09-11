@@ -1,0 +1,93 @@
+Solves the linear equation set ``a @ x == b`` for the unknown ``x``
+for square `a` matrix.
+
+If the data matrix is known to be a particular type then supplying the
+corresponding string to ``assume_a`` key chooses the dedicated solver.
+The available options are
+
+===================  ========
+ generic matrix       'gen'
+ symmetric            'sym'
+ hermitian            'her'
+ positive definite    'pos'
+===================  ========
+
+If omitted, ``'gen'`` is the default structure.
+
+The datatype of the arrays define which solver is called regardless
+of the values. In other words, even when the complex array entries have
+precisely zero imaginary parts, the complex solver will be called based
+on the data type of the array.
+
+Parameters
+----------
+a : (N, N) array_like
+    Square input data
+b : (N, NRHS) array_like
+    Input data for the right hand side.
+sym_pos : bool, default: False, deprecated
+    Assume `a` is symmetric and positive definite.
+
+    .. deprecated:: 0.19.0
+        This keyword is deprecated and should be replaced by using
+       ``assume_a = 'pos'``. `sym_pos` will be removed in SciPy 1.11.0.
+
+lower : bool, default: False
+    Ignored if ``assume_a == 'gen'`` (the default). If True, the
+    calculation uses only the data in the lower triangle of `a`;
+    entries above the diagonal are ignored. If False (default), the
+    calculation uses only the data in the upper triangle of `a`; entries
+    below the diagonal are ignored.
+overwrite_a : bool, default: False
+    Allow overwriting data in `a` (may enhance performance).
+overwrite_b : bool, default: False
+    Allow overwriting data in `b` (may enhance performance).
+check_finite : bool, default: True
+    Whether to check that the input matrices contain only finite numbers.
+    Disabling may give a performance gain, but may result in problems
+    (crashes, non-termination) if the inputs do contain infinities or NaNs.
+assume_a : str, {'gen', 'sym', 'her', 'pos'}
+    Valid entries are explained above.
+transposed : bool, default: False
+    If True, solve ``a.T @ x == b``. Raises `NotImplementedError`
+    for complex `a`.
+
+Returns
+-------
+x : (N, NRHS) ndarray
+    The solution array.
+
+Raises
+------
+ValueError
+    If size mismatches detected or input a is not square.
+LinAlgError
+    If the matrix is singular.
+LinAlgWarning
+    If an ill-conditioned input a is detected.
+NotImplementedError
+    If transposed is True and input a is a complex matrix.
+
+Examples
+--------
+Given `a` and `b`, solve for `x`:
+
+>>> a = np.array([[3, 2, 0], [1, -1, 0], [0, 5, 1]])
+>>> b = np.array([2, 4, -1])
+>>> from scipy import linalg
+>>> x = linalg.solve(a, b)
+>>> x
+array([ 2., -2.,  9.])
+>>> np.dot(a, x) == b
+array([ True,  True,  True], dtype=bool)
+
+Notes
+-----
+If the input b matrix is a 1-D array with N elements, when supplied
+together with an NxN input a, it is assumed as a valid column vector
+despite the apparent size mismatch. This is compatible with the
+numpy.dot() behavior and the returned result is still 1-D array.
+
+The generic, symmetric, Hermitian and positive definite solutions are
+obtained via calling ?GESV, ?SYSV, ?HESV, and ?POSV routines of
+LAPACK respectively.

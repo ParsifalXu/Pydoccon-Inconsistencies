@@ -1,0 +1,36 @@
+{
+    "param": {
+        "n_components": "int, default=None Dimensionality of latent space, the number of components of ``X`` that are obtained after ``transform``. If None, n_components is set to the number of features.",
+        "tol": "float, defaul=1e-2 Stopping tolerance for log-likelihood increase.",
+        "copy": "bool, default=True Whether to make a copy of X. If ``False``, the input X gets overwritten during fitting.",
+        "max_iter": "int, default=1000 Maximum number of iterations.",
+        "noise_variance_init": "ndarray of shape (n_features, ), default=None The initial guess of the noise variance for each feature. If None, it defaults to np.ones(n_features).",
+        "svd_method": "{'lapack', 'randomized'}, default='randomized' Which SVD method to use. If 'lapack' use standard SVD from scipy.linalg, if 'randomized' use fast ``randomized_svd`` function. Defaults to 'randomized'. For most applications 'randomized' will be sufficiently precise while providing significant speed gains. Accuracy can also be improved by setting higher values for `iterated_power`. If this is not sufficient, for maximum precision you should choose 'lapack'.",
+        "iterated_power": "int, default=3 Number of iterations for the power method. 3 by default. Only used if ``svd_method`` equals 'randomized'.",
+        "rotation": "{'varimax', 'quartimax'}, default=None If not None, apply the indicated rotation. Currently, varimax and quartimax are implemented. See `\"The varimax criterion for analytic rotation in factor analysis\" <https://link.springer.com/article/10.1007%2FBF02289233>`_ H. F. Kaiser, 1958.  .. versionadded:: 0.24",
+        "random_state": "int or RandomState instance, default=0 Only used when ``svd_method`` equals 'randomized'. Pass an int for reproducible results across multiple function calls. See :term:`Glossary <random_state>`."
+    },
+    "attr": {
+        "components_": "ndarray of shape (n_components, n_features) Components with maximum variance.",
+        "loglike_": "list of shape (n_iterations, ) The log likelihood at each iteration.",
+        "noise_variance_": "ndarray of shape (n_features, ) The estimated noise variance for each feature.",
+        "n_iter_": "int Number of iterations run.",
+        "mean_": "ndarray of shape (n_features, ) Per-feature empirical mean, estimated from the training set."
+    },
+    "pa": {
+        "n_components": "int, default=None Dimensionality of latent space, the number of components of ``X`` that are obtained after ``transform``. If None, n_components is set to the number of features.",
+        "tol": "float, defaul=1e-2 Stopping tolerance for log-likelihood increase.",
+        "copy": "bool, default=True Whether to make a copy of X. If ``False``, the input X gets overwritten during fitting.",
+        "max_iter": "int, default=1000 Maximum number of iterations.",
+        "noise_variance_init": "ndarray of shape (n_features, ), default=None The initial guess of the noise variance for each feature. If None, it defaults to np.ones(n_features).",
+        "svd_method": "{'lapack', 'randomized'}, default='randomized' Which SVD method to use. If 'lapack' use standard SVD from scipy.linalg, if 'randomized' use fast ``randomized_svd`` function. Defaults to 'randomized'. For most applications 'randomized' will be sufficiently precise while providing significant speed gains. Accuracy can also be improved by setting higher values for `iterated_power`. If this is not sufficient, for maximum precision you should choose 'lapack'.",
+        "iterated_power": "int, default=3 Number of iterations for the power method. 3 by default. Only used if ``svd_method`` equals 'randomized'.",
+        "rotation": "{'varimax', 'quartimax'}, default=None If not None, apply the indicated rotation. Currently, varimax and quartimax are implemented. See `\"The varimax criterion for analytic rotation in factor analysis\" <https://link.springer.com/article/10.1007%2FBF02289233>`_ H. F. Kaiser, 1958.  .. versionadded:: 0.24",
+        "random_state": "int or RandomState instance, default=0 Only used when ``svd_method`` equals 'randomized'. Pass an int for reproducible results across multiple function calls. See :term:`Glossary <random_state>`.",
+        "components_": "ndarray of shape (n_components, n_features) Components with maximum variance.",
+        "loglike_": "list of shape (n_iterations, ) The log likelihood at each iteration.",
+        "noise_variance_": "ndarray of shape (n_features, ) The estimated noise variance for each feature.",
+        "n_iter_": "int Number of iterations run.",
+        "mean_": "ndarray of shape (n_features, ) Per-feature empirical mean, estimated from the training set."
+    }
+}

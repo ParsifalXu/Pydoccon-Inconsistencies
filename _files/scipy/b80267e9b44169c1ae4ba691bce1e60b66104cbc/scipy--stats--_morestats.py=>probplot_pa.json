@@ -1,0 +1,19 @@
+{
+    "param": {
+        "x": "array_like Sample/response data from which `probplot` creates the plot.",
+        "sparams": "tuple, optional Distribution-specific shape parameters (shape parameters plus location and scale).",
+        "dist": "str or stats.distributions instance, optional Distribution or distribution function name. The default is 'norm' for a normal probability plot.  Objects that look enough like a stats.distributions instance (i.e. they have a ``ppf`` method) are also accepted.",
+        "fit": "bool, optional Fit a least-squares regression (best-fit) line to the sample data if True (default).",
+        "plot": "object, optional If given, plots the quantiles. If given and `fit` is True, also plots the least squares fit. `plot` is an object that has to have methods \"plot\" and \"text\". The `matplotlib.pyplot` module or a Matplotlib Axes object can be used, or a custom object with the same methods. Default is None, which means that no plot is created.",
+        "rvalue": "bool, optional If `plot` is provided and `fit` is True, setting `rvalue` to True includes the coefficient of determination on the plot. Default is False."
+    },
+    "attr": {},
+    "pa": {
+        "x": "array_like Sample/response data from which `probplot` creates the plot.",
+        "sparams": "tuple, optional Distribution-specific shape parameters (shape parameters plus location and scale).",
+        "dist": "str or stats.distributions instance, optional Distribution or distribution function name. The default is 'norm' for a normal probability plot.  Objects that look enough like a stats.distributions instance (i.e. they have a ``ppf`` method) are also accepted.",
+        "fit": "bool, optional Fit a least-squares regression (best-fit) line to the sample data if True (default).",
+        "plot": "object, optional If given, plots the quantiles. If given and `fit` is True, also plots the least squares fit. `plot` is an object that has to have methods \"plot\" and \"text\". The `matplotlib.pyplot` module or a Matplotlib Axes object can be used, or a custom object with the same methods. Default is None, which means that no plot is created.",
+        "rvalue": "bool, optional If `plot` is provided and `fit` is True, setting `rvalue` to True includes the coefficient of determination on the plot. Default is False."
+    }
+}

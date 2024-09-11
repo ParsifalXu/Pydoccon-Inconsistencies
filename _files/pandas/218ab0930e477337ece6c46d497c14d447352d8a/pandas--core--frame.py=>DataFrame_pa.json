@@ -1,0 +1,15 @@
+{
+    "param": {
+        "data": "dict Of the form {field : array-like} or {field : dict}.",
+        "orient": "{'columns', 'index', 'tight'}, default 'columns' The \"orientation\" of the data. If the keys of the passed dict should be the columns of the resulting DataFrame, pass 'columns' (default). Otherwise if the keys should be rows, pass 'index'. If 'tight', assume a dict with keys ['index', 'columns', 'data', 'index_names', 'column_names'].  .. versionadded:: 1.4.0 'tight' as an allowed value for the ``orient`` argument",
+        "dtype": "dtype, default None Data type to force after DataFrame construction, otherwise infer.",
+        "columns": "list, default None Column labels to use when ``orient='index'``. Raises a ValueError if used with ``orient='columns'`` or ``orient='tight'``."
+    },
+    "attr": {},
+    "pa": {
+        "data": "dict Of the form {field : array-like} or {field : dict}.",
+        "orient": "{'columns', 'index', 'tight'}, default 'columns' The \"orientation\" of the data. If the keys of the passed dict should be the columns of the resulting DataFrame, pass 'columns' (default). Otherwise if the keys should be rows, pass 'index'. If 'tight', assume a dict with keys ['index', 'columns', 'data', 'index_names', 'column_names'].  .. versionadded:: 1.4.0 'tight' as an allowed value for the ``orient`` argument",
+        "dtype": "dtype, default None Data type to force after DataFrame construction, otherwise infer.",
+        "columns": "list, default None Column labels to use when ``orient='index'``. Raises a ValueError if used with ``orient='columns'`` or ``orient='tight'``."
+    }
+}

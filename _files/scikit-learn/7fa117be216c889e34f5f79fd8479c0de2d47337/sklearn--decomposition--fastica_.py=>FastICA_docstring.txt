@@ -1,0 +1,84 @@
+FastICA: a fast algorithm for Independent Component Analysis.
+
+Read more in the :ref:`User Guide <ICA>`.
+
+Parameters
+----------
+n_components : int, optional
+    Number of components to use. If none is passed, all are used.
+
+algorithm : {'parallel', 'deflation'}
+    Apply parallel or deflational algorithm for FastICA.
+
+whiten : boolean, optional
+    If whiten is false, the data is already considered to be
+    whitened, and no whitening is performed.
+
+fun : string or function, optional. Default: 'logcosh'
+    The functional form of the G function used in the
+    approximation to neg-entropy. Could be either 'logcosh', 'exp',
+    or 'cube'.
+    You can also provide your own function. It should return a tuple
+    containing the value of the function, and of its derivative, in the
+    point. Example:
+
+    def my_g(x):
+        return x ** 3, (3 * x ** 2).mean(axis=-1)
+
+fun_args : dictionary, optional
+    Arguments to send to the functional form.
+    If empty and if fun='logcosh', fun_args will take value
+    {'alpha' : 1.0}.
+
+max_iter : int, optional
+    Maximum number of iterations during fit.
+
+tol : float, optional
+    Tolerance on update at each iteration.
+
+w_init : None of an (n_components, n_components) ndarray
+    The mixing matrix to be used to initialize the algorithm.
+
+random_state : int, RandomState instance or None, optional (default=None)
+    If int, random_state is the seed used by the random number generator;
+    If RandomState instance, random_state is the random number generator;
+    If None, the random number generator is the RandomState instance used
+    by `np.random`.
+
+Attributes
+----------
+components_ : 2D array, shape (n_components, n_features)
+    The unmixing matrix.
+
+mixing_ : array, shape (n_features, n_components)
+    The mixing matrix.
+
+mean_ : array, shape(n_features)
+    The mean over features. Only set if `self.whiten` is True.
+
+n_iter_ : int
+    If the algorithm is "deflation", n_iter is the
+    maximum number of iterations run across all components. Else
+    they are just the number of iterations taken to converge.
+
+whitening_ : array, shape (n_components, n_features)
+    Only set if whiten is 'True'. This is the pre-whitening matrix
+    that projects data onto the first `n_components` principal components.
+
+Examples
+--------
+>>> from sklearn.datasets import load_digits
+>>> from sklearn.decomposition import FastICA
+>>> X, _ = load_digits(return_X_y=True)
+>>> transformer = FastICA(n_components=7,
+...         random_state=0)
+>>> X_transformed = transformer.fit_transform(X)
+>>> X_transformed.shape
+(1797, 7)
+
+Notes
+-----
+Implementation based on
+*A. Hyvarinen and E. Oja, Independent Component Analysis:
+Algorithms and Applications, Neural Networks, 13(4-5), 2000,
+pp. 411-430*
