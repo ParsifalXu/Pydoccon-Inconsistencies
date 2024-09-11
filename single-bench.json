@@ -86,7 +86,7 @@
         "func": "",
         "exec_func": "",
         "params": ["", ""],
-        "constraints": "( = '') ^ ( = '')",
+        "constraints": "( = '') -> ( = '')",
         "oracle": "",
         "cancheck": "able"
     }
