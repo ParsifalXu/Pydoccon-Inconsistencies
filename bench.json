@@ -460,8 +460,8 @@
         "exec_func": "fit",
         "params": ["penalty", "loss"],
         "constraints": "!((panelty = 'l1') ^ (loss = 'hinge'))",
-        "oracle": "",
-        "cancheck": "able"
+        "oracle": "False",
+        "cancheck": "ubable"
     }
 ]
 
