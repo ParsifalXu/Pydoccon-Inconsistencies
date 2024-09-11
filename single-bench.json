@@ -89,5 +89,23 @@
         "constraints": "( = '') -> ( = '')",
         "oracle": "",
         "cancheck": "able"
+    },
+    {
+        "lib": "numpy",
+        "sha": "345ced482bac1c974d6bc8b70b101293d76a16e1",
+        "issue_sha": "345ced482bac1c974d6bc8b70b101293d76a16e1",
+        "issue_type": "addc",
+        "granularity": "func",
+        "filepath": "numpy/lib/arraysetops.py",
+        "docfrom": "unique",
+        "class": "NA",
+        "func": "unique",
+        "exec_func": "unique",
+        "params": ["equal_nan", "equal_nans"],
+        "constraints": "NA",
+        "oracle": "False",
+        "cancheck": "able"
     }
 ]
+
+
