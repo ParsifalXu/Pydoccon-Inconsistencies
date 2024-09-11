@@ -571,9 +571,41 @@
         "func": "_get_kernel",
         "exec_func": "_get_kernel",
         "params": ["gamma", "kernel"],
-        "constraints": "(kernel = 'rbf' || kernel = 'poly' || kernel = 'sigmoid') -> (gamma = 'ignore')",
+        "constraints": "!(kernel = 'rbf' || kernel = 'poly' || kernel = 'sigmoid') -> (gamma = 'ignore')",
         "oracle": "True",
         "cancheck": "ubable"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "683af6c6b65a7943c7fc28144d4b53e7888c0133",
+        "issue_sha": "683af6c6b65a7943c7fc28144d4b53e7888c0133",
+        "issue_type": "addc",
+        "granularity": "func",
+        "filepath": "sklearn/covariance/_graph_lasso.py",
+        "docfrom": "graphical_lasso",
+        "class": "NA",
+        "func": "graphical_lasso",
+        "exec_func": "graphical_lasso",
+        "params": ["cov_init", "emp_cov"],
+        "constraints": "(cov_init = 'None') -> (emp_cov = 'exist')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "c115ed715a32a628c77440253a6e3af502e1098d",
+        "issue_sha": "c115ed715a32a628c77440253a6e3af502e1098d",
+        "issue_type": "good",
+        "granularity": "func",
+        "filepath": "sklearn/manifold/_locally_linear.py",
+        "docfrom": "null_space",
+        "class": "NA",
+        "func": "null_space",
+        "exec_func": "null_space",
+        "params": ["max_iter", "eigen_solver"],
+        "constraints": "(eigen_solver = 'dense') -> (max_iter != 'exist')",
+        "oracle": "True",
+        "cancheck": "able"
     }
 ]
 
