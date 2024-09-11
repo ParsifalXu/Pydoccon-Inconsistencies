@@ -73,5 +73,21 @@
         "params": ["step_th"],
         "constraints": "NA",
         "oracle": "False"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "",
+        "issue_sha": "",
+        "issue_type": "",
+        "granularity": "",
+        "filepath": "",
+        "docfrom": "",
+        "class": "",
+        "func": "",
+        "exec_func": "",
+        "params": ["", ""],
+        "constraints": "( = '') ^ ( = '')",
+        "oracle": "",
+        "cancheck": "able"
     }
 ]

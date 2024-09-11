@@ -12,7 +12,8 @@
         "exec_func": "fit",
         "params": ["sample_weight", "strategy"],
         "constraints": "(strategy = 'uniform') -> (sample_weight != 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -27,7 +28,8 @@
         "exec_func": "fit",
         "params": ["sample_weight", "strategy"],
         "constraints": "(strategy = 'quantile') -> (sample_weight != 'None')",
-        "oracle": "False"
+        "oracle": "False",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -42,7 +44,8 @@
         "exec_func": "partial_fit",
         "params": ["with_mean", "mean_"],
         "constraints": "(with_mean = 'False') -> (mean_ = 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -57,7 +60,8 @@
         "exec_func": "partial_fit",
         "params": ["with_mean", "mean_"],
         "constraints": "((with_mean = 'False') ^ (with_std = 'False')) -> (mean_ = 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -72,7 +76,8 @@
         "exec_func": "fit",
         "params": ["n_features_to_select", "tol"],
         "constraints": "(n_features_to_select = 'warn') -> (tol != 'None')",
-        "oracle": "False"
+        "oracle": "False",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -87,7 +92,8 @@
         "exec_func": "fit",
         "params": ["n_features_to_select", "tol"],
         "constraints": "(n_features_to_select = 'auto') -> (tol != 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -102,7 +108,8 @@
         "exec_func": "_multiclass_roc_auc_score",
         "params": ["average", "multi_class"],
         "constraints": "(multi_class = 'ovo') -> (average = 'None')",
-        "oracle": "False"
+        "oracle": "False",
+        "cancheck": "unable"
     },
     {
         "lib": "scikit-learn",
@@ -117,7 +124,8 @@
         "exec_func": "_multiclass_roc_auc_score",
         "params": ["average", "multi_class"],
         "constraints": "(multi_class = 'ovr') -> (average = 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "unable"
     },
     {
         "lib": "scikit-learn",
@@ -127,12 +135,13 @@
         "granularity": "class",
         "filepath": "sklearn/linear_model/_ridge.py",
         "docfrom": "RidgeClassifierCV",
-        "class": "RidgeClassifierCV",
-        "func": "all",
-        "exec_func": "all",
+        "class": "_RidgeGCV",
+        "func": "fit",
+        "exec_func": "fit",
         "params": ["store_cv_values", "cv_values_"],
-        "constraints": "(store_cv_values = 'True') -> (cv_values != 'None')",
-        "oracle": "False"
+        "constraints": "(store_cv_values = 'True') -> (cv_values_ != 'None')",
+        "oracle": "True",
+        "cancheck": "unable"
     },
     {
         "lib": "scikit-learn",
@@ -147,7 +156,8 @@
         "exec_func": "_fit",
         "params": ["oob_score", "bootstrap"],
         "constraints": "(bootstrap = 'True') -> (oob_score != 'None')",
-        "oracle": "False"
+        "oracle": "True",
+        "cancheck": "unable"
     },
     {
         "lib": "scikit-learn",
@@ -162,7 +172,8 @@
         "exec_func": "dict_learning",
         "params": ["code_init", "dict_init"],
         "constraints": "(code_init != 'None') ^ (dict_init != 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -177,7 +188,8 @@
         "exec_func": "partial_fit",
         "params": ["scale_", "with_std"],
         "constraints": "(with_std = 'False') -> (scale_ = 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -192,7 +204,8 @@
         "exec_func": "fit",
         "params": ["n_nonzero_coefs_", "tol"],
         "constraints": "(n_nonzero_coefs_ = 'None') ^ (tol = 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -207,7 +220,8 @@
         "exec_func": "transform",
         "params": ["error_on_new", "features"],
         "constraints": "(features = 'missing-only') ^ (error_on_new != 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
@@ -222,14 +236,15 @@
         "exec_func": "get_auto_step_size",
         "params": ["is_saga", "n_samples"],
         "constraints": "(is_saga = 'True') ^ (n_samples != 'None')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
         "sha": "b513081c658317eabafd713d6d5d18f7a5a30a73",
         "issue_sha": "b513081c658317eabafd713d6d5d18f7a5a30a73",
         "issue_type": "addc",
-        "granularity": "func",
+        "granularity": "class",
         "filepath": "sklearn/cluster/_spectral.py",
         "docfrom": "SpectralClustering",
         "class": "SpectralClustering",
@@ -237,14 +252,15 @@
         "exec_func": "fit",
         "params": ["affinity", "n_jobs"],
         "constraints": "(affinity = 'nearest_neighbors') ^ (n_jobs = 'exist')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
     },
     {
         "lib": "scikit-learn",
         "sha": "b513081c658317eabafd713d6d5d18f7a5a30a73",
         "issue_sha": "b513081c658317eabafd713d6d5d18f7a5a30a73",
         "issue_type": "addc",
-        "granularity": "func",
+        "granularity": "class",
         "filepath": "sklearn/cluster/_spectral.py",
         "docfrom": "SpectralClustering",
         "class": "SpectralClustering",
@@ -252,7 +268,88 @@
         "exec_func": "fit",
         "params": ["affinity", "n_jobs"],
         "constraints": "(affinity = 'precomputed_nearest_neighbors') ^ (n_jobs = 'exist')",
-        "oracle": "True"
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "fdce26a61b5e388ee0871f5cb90ec24afc61c074",
+        "issue_sha": "fdce26a61b5e388ee0871f5cb90ec24afc61c074",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/semi_supervised/_self_training.py",
+        "docfrom": "SelfTrainingClassifier",
+        "class": "SelfTrainingClassifier",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": ["criterion", "k_best"],
+        "constraints": "(criterion = 'k_best') ^ (k_best = 'exist')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "20509fb2bcfea6c0d8ccd72535a3289f61c08bb0",
+        "issue_sha": "20509fb2bcfea6c0d8ccd72535a3289f61c08bb0",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/impute/_iterative.py",
+        "docfrom": "IterativeImputer",
+        "class": "IterativeImputer",
+        "func": "__init__",
+        "exec_func": "__init__",
+        "params": ["add_indicator", "indicator_"],
+        "constraints": "(add_indicator = 'False') ^ (indicator_ = 'None')",
+        "oracle": "False",
+        "cancheck": "unable"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "07a9dc93af13849e0521e94981fb5a215500b095",
+        "issue_sha": "07a9dc93af13849e0521e94981fb5a215500b095",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/impute/_base.py",
+        "docfrom": "SimpleImputer",
+        "class": "SimpleImputer",
+        "func": "inverse_transform",
+        "exec_func": "inverse_transform",
+        "params": ["copy", "add_indicator"],
+        "constraints": "(add_indicator = 'True') ^ (copy = 'False')",
+        "oracle": "False",
+        "cancheck": "unable"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "3cde262274a9187fe16c6aeccdcdf9fc433f0fb2",
+        "issue_sha": "3cde262274a9187fe16c6aeccdcdf9fc433f0fb2",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py",
+        "docfrom": "HistGradientBoostingRegressor",
+        "class": "HistGradientBoostingRegressor",
+        "func": "_encode_y",
+        "exec_func": "_encode_y",
+        "params": ["loss", "_encode_y"],
+        "constraints": "(y >= 0) ^ (loss = 'poisson')",
+        "oracle": "True",
+        "cancheck": "unable"
+    },
+    {
+        "lib": "scikit-learn",
+        "sha": "007d11a49f2ad6ffc64aa302565b7b361b1b51b2",
+        "issue_sha": "007d11a49f2ad6ffc64aa302565b7b361b1b51b2",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/neural_network/_multilayer_perceptron.py",
+        "docfrom": "MLPRegressor",
+        "class": "BaseMultilayerPerceptron",
+        "func": "_fit_stochastic",
+        "exec_func": "_fit_stochastic",
+        "params": ["validation_fraction", "early_stpping"],
+        "constraints": "(early_stpping = 'True') ^ (validation_fraction = 'exist')",
+        "oracle": "True",
+        "cancheck": "unable"
     }
 ]
 
