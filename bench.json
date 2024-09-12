@@ -363,7 +363,7 @@
         "func": "_fit_stochastic",
         "exec_func": "_fit_stochastic",
         "params": ["validation_fraction", "early_stpping"],
-        "constraints": "(early_stpping = 'True') -> (validation_fraction = 'exist')",
+        "constraints": "(early_stopping = 'True') -> (validation_fraction = 'exist')",
         "oracle": "True",
         "cancheck": "unable"
     },
@@ -635,7 +635,7 @@
         "func": "sparse_encode",
         "exec_func": "sparse_encode",
         "params": ["n_nonzero_coefs", "algorithm"],
-        "constraints": "(n_nonzero_coefs = 'omp') -> (algorithm = 'exist')",
+        "constraints": "(algorithm = 'omp') -> (n_nonzero_coefs = 'exist')",
         "oracle": "True",
         "cancheck": "able"
     },
@@ -651,7 +651,7 @@
         "func": "sparse_encode",
         "exec_func": "sparse_encode",
         "params": ["n_nonzero_coefs", "algorithm"],
-        "constraints": "(n_nonzero_coefs = 'lars') -> (algorithm = 'exist')",
+        "constraints": "(algorithm = 'lars') -> (n_nonzero_coefs = 'exist')",
         "oracle": "True",
         "cancheck": "able"
     },
