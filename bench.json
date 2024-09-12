@@ -1115,7 +1115,7 @@
         "func": "pivot_table",
         "exec_func": "__internal_pivot_table",
         "params": ["margins", "aggfunc"],
-        "constraints": "(margins != 'True') -> (aggfunc = 'exist')",
+        "constraints": "(margins = 'True') -> (aggfunc = 'exist')",
         "oracle": "True",
         "cancheck": "able"
     },
