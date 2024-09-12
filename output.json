@@ -20,6 +20,46 @@
         "cancheck": "able"
     },
     {
+        "id": 1,
+        "lib": "scikit-learn",
+        "sha": "395761a76397a560303f00d3db24a50a00ca11ed",
+        "issue_sha": "395761a76397a560303f00d3db24a50a00ca11ed",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_discretization.py",
+        "docfrom": "KBinsDiscretizer",
+        "class": "KBinsDiscretizer",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "sample_weight",
+            "strategy"
+        ],
+        "constraints": "(strategy = 'uniform') -> (sample_weight = 'None')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 1,
+        "lib": "scikit-learn",
+        "sha": "395761a76397a560303f00d3db24a50a00ca11ed",
+        "issue_sha": "395761a76397a560303f00d3db24a50a00ca11ed",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_discretization.py",
+        "docfrom": "KBinsDiscretizer",
+        "class": "KBinsDiscretizer",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "sample_weight",
+            "strategy"
+        ],
+        "constraints": "(strategyy = 'uniform') -> (sample_weight != 'None')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
         "id": 2,
         "lib": "scikit-learn",
         "sha": "131109b0037ec71e4a4f262b888e198d58e38f24",
@@ -36,7 +76,47 @@
             "strategy"
         ],
         "constraints": "(strategy = 'quantile') -> (sample_weight != 'None')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
+        "id": 2,
+        "lib": "scikit-learn",
+        "sha": "131109b0037ec71e4a4f262b888e198d58e38f24",
+        "issue_sha": "395761a76397a560303f00d3db24a50a00ca11ed",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_discretization.py",
+        "docfrom": "KBinsDiscretizer",
+        "class": "KBinsDiscretizer",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "sample_weight",
+            "strategy"
+        ],
+        "constraints": "(strategy = 'newvalue') -> (sample_weight != 'None')",
         "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 2,
+        "lib": "scikit-learn",
+        "sha": "131109b0037ec71e4a4f262b888e198d58e38f24",
+        "issue_sha": "395761a76397a560303f00d3db24a50a00ca11ed",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_discretization.py",
+        "docfrom": "KBinsDiscretizer",
+        "class": "KBinsDiscretizer",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "sample_weight",
+            "strategy"
+        ],
+        "constraints": "(strategy = 'kmeans') -> (sample_weight != 'None')",
+        "oracle": "True",
         "cancheck": "able"
     },
     {
@@ -60,6 +140,46 @@
         "cancheck": "able"
     },
     {
+        "id": 3,
+        "lib": "scikit-learn",
+        "sha": "483fafe5d1a27446a8f05a0d9bb3762de47b1618",
+        "issue_sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_data.py",
+        "docfrom": "StandardScaler",
+        "class": "StandardScaler",
+        "func": "partial_fit",
+        "exec_func": "partial_fit",
+        "params": [
+            "with_mean",
+            "mean_"
+        ],
+        "constraints": "(with_mean = 'False') -> (mean_ = 'newvalue')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 3,
+        "lib": "scikit-learn",
+        "sha": "483fafe5d1a27446a8f05a0d9bb3762de47b1618",
+        "issue_sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_data.py",
+        "docfrom": "StandardScaler",
+        "class": "StandardScaler",
+        "func": "partial_fit",
+        "exec_func": "partial_fit",
+        "params": [
+            "with_mean",
+            "mean_"
+        ],
+        "constraints": "(with_mean = 'True') -> (mean_ = 'None')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
         "id": 4,
         "lib": "scikit-learn",
         "sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
@@ -80,6 +200,46 @@
         "cancheck": "able"
     },
     {
+        "id": 4,
+        "lib": "scikit-learn",
+        "sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_data.py",
+        "docfrom": "StandardScaler",
+        "class": "StandardScaler",
+        "func": "partial_fit",
+        "exec_func": "partial_fit",
+        "params": [
+            "with_mean",
+            "mean_"
+        ],
+        "constraints": "((with_mean = 'False') ^ (with_std = 'False')) -> (mean_ = 'newvalue')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 4,
+        "lib": "scikit-learn",
+        "sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_sha": "10997c94fd19f999b3d257b137f7722af0bd6fd8",
+        "issue_type": "logic",
+        "granularity": "class",
+        "filepath": "sklearn/preprocessing/_data.py",
+        "docfrom": "StandardScaler",
+        "class": "StandardScaler",
+        "func": "partial_fit",
+        "exec_func": "partial_fit",
+        "params": [
+            "with_mean",
+            "mean_"
+        ],
+        "constraints": "((with_mean = 'False') ^ (with_std = 'True')) -> (mean_ = 'None')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
         "id": 5,
         "lib": "scikit-learn",
         "sha": "767d3555a51a4d9279ca47c9426df8b6418da8ce",
@@ -96,6 +256,46 @@
             "tol"
         ],
         "constraints": "(n_features_to_select = 'warn') -> (tol != 'None')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 5,
+        "lib": "scikit-learn",
+        "sha": "767d3555a51a4d9279ca47c9426df8b6418da8ce",
+        "issue_sha": "8409b877fdf3212cd9ed65c7868202961a777a20",
+        "issue_type": "value",
+        "granularity": "class",
+        "filepath": "sklearn/feature_selection/_sequential.py",
+        "docfrom": "SequentialFeatureSelector",
+        "class": "SequentialFeatureSelector",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "n_features_to_select",
+            "tol"
+        ],
+        "constraints": "(n_features_to_select = 'newvalue') -> (tol != 'None')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 5,
+        "lib": "scikit-learn",
+        "sha": "767d3555a51a4d9279ca47c9426df8b6418da8ce",
+        "issue_sha": "8409b877fdf3212cd9ed65c7868202961a777a20",
+        "issue_type": "value",
+        "granularity": "class",
+        "filepath": "sklearn/feature_selection/_sequential.py",
+        "docfrom": "SequentialFeatureSelector",
+        "class": "SequentialFeatureSelector",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "n_features_to_select",
+            "tol"
+        ],
+        "constraints": "(n_features_to_select = 'warn') -> (tol = 'None')",
         "oracle": "False",
         "cancheck": "able"
     },
@@ -120,6 +320,46 @@
         "cancheck": "able"
     },
     {
+        "id": 6,
+        "lib": "scikit-learn",
+        "sha": "8409b877fdf3212cd9ed65c7868202961a777a20",
+        "issue_sha": "8409b877fdf3212cd9ed65c7868202961a777a20",
+        "issue_type": "value",
+        "granularity": "class",
+        "filepath": "sklearn/feature_selection/_sequential.py",
+        "docfrom": "SequentialFeatureSelector",
+        "class": "SequentialFeatureSelector",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "n_features_to_select",
+            "tol"
+        ],
+        "constraints": "(n_features_to_select = 'auto') -> (tol = 'None')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
+        "id": 6,
+        "lib": "scikit-learn",
+        "sha": "8409b877fdf3212cd9ed65c7868202961a777a20",
+        "issue_sha": "8409b877fdf3212cd9ed65c7868202961a777a20",
+        "issue_type": "value",
+        "granularity": "class",
+        "filepath": "sklearn/feature_selection/_sequential.py",
+        "docfrom": "SequentialFeatureSelector",
+        "class": "SequentialFeatureSelector",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "n_features_to_select",
+            "tol"
+        ],
+        "constraints": "(n_features_to_selects = 'auto') -> (tol != 'None')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
         "id": 7,
         "lib": "scikit-learn",
         "sha": "7e8d3c505baafa45bd94d9e28ee3d35141ff91c4",
@@ -137,6 +377,86 @@
         ],
         "constraints": "(multi_class = 'ovo') -> (average = 'None')",
         "oracle": "False",
+        "cancheck": "unable"
+    },
+    {
+        "id": 7,
+        "lib": "scikit-learn",
+        "sha": "7e8d3c505baafa45bd94d9e28ee3d35141ff91c4",
+        "issue_sha": "451f2121eab19dd25c337192a89d8c1582664d89",
+        "issue_type": "value",
+        "granularity": "func",
+        "filepath": "sklearn/metrics/_ranking.py",
+        "docfrom": "roc_auc_score",
+        "class": "NA",
+        "func": "roc_auc_score",
+        "exec_func": "_multiclass_roc_auc_score",
+        "params": [
+            "average",
+            "multi_class"
+        ],
+        "constraints": "(multi_class = 'ovr') -> (average = 'None')",
+        "oracle": "True",
+        "cancheck": "unable"
+    },
+    {
+        "id": 7,
+        "lib": "scikit-learn",
+        "sha": "7e8d3c505baafa45bd94d9e28ee3d35141ff91c4",
+        "issue_sha": "451f2121eab19dd25c337192a89d8c1582664d89",
+        "issue_type": "value",
+        "granularity": "func",
+        "filepath": "sklearn/metrics/_ranking.py",
+        "docfrom": "roc_auc_score",
+        "class": "NA",
+        "func": "roc_auc_score",
+        "exec_func": "_multiclass_roc_auc_score",
+        "params": [
+            "average",
+            "multi_class"
+        ],
+        "constraints": "(multi_class = 'ovo') -> (averageee = 'None')",
+        "oracle": "False",
+        "cancheck": "unable"
+    },
+    {
+        "id": 8,
+        "lib": "scikit-learn",
+        "sha": "451f2121eab19dd25c337192a89d8c1582664d89",
+        "issue_sha": "451f2121eab19dd25c337192a89d8c1582664d89",
+        "issue_type": "value",
+        "granularity": "func",
+        "filepath": "sklearn/metrics/_ranking.py",
+        "docfrom": "roc_auc_score",
+        "class": "NA",
+        "func": "roc_auc_score",
+        "exec_func": "_multiclass_roc_auc_score",
+        "params": [
+            "average",
+            "multi_class"
+        ],
+        "constraints": "(multi_class = 'ovr') -> (average = 'None')",
+        "oracle": "True",
+        "cancheck": "unable"
+    },
+    {
+        "id": 8,
+        "lib": "scikit-learn",
+        "sha": "451f2121eab19dd25c337192a89d8c1582664d89",
+        "issue_sha": "451f2121eab19dd25c337192a89d8c1582664d89",
+        "issue_type": "value",
+        "granularity": "func",
+        "filepath": "sklearn/metrics/_ranking.py",
+        "docfrom": "roc_auc_score",
+        "class": "NA",
+        "func": "roc_auc_score",
+        "exec_func": "_multiclass_roc_auc_score",
+        "params": [
+            "average",
+            "multi_class"
+        ],
+        "constraints": "(multi_class = 'ovr') -> (average != 'None')",
+        "oracle": "True",
         "cancheck": "unable"
     },
     {
@@ -175,8 +495,48 @@
             "store_cv_values",
             "cv_values_"
         ],
-        "constraints": "(store_cv_values = 'True') -> (cv_values_ != 'None')",
+        "constraints": "(store_cv_values = 'True') -> (cv_values_ = 'exist')",
         "oracle": "True",
+        "cancheck": "unable"
+    },
+    {
+        "id": 9,
+        "lib": "scikit-learn",
+        "sha": "07bc459be26c7d83d5c980553a853b136ca19c71",
+        "issue_sha": "beea7838cc8ec61c78255bd9c8b400997e30db32",
+        "issue_type": "removec",
+        "granularity": "class",
+        "filepath": "sklearn/linear_model/_ridge.py",
+        "docfrom": "RidgeClassifierCV",
+        "class": "_RidgeGCV",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "store_cv_values",
+            "cv_values_"
+        ],
+        "constraints": "(store_cv_values = 'True') -> (cv_values_ != 'exist')",
+        "oracle": "False",
+        "cancheck": "unable"
+    },
+    {
+        "id": 9,
+        "lib": "scikit-learn",
+        "sha": "07bc459be26c7d83d5c980553a853b136ca19c71",
+        "issue_sha": "beea7838cc8ec61c78255bd9c8b400997e30db32",
+        "issue_type": "removec",
+        "granularity": "class",
+        "filepath": "sklearn/linear_model/_ridge.py",
+        "docfrom": "RidgeClassifierCV",
+        "class": "_RidgeGCV",
+        "func": "fit",
+        "exec_func": "fit",
+        "params": [
+            "store_cv_values",
+            "cv_values_"
+        ],
+        "constraints": "(store_cv_values = 'False') -> (cv_values_ = 'exist')",
+        "oracle": "False",
         "cancheck": "unable"
     },
     {
@@ -197,6 +557,46 @@
         ],
         "constraints": "(bootstrap = 'True') -> (oob_score != 'None')",
         "oracle": "True",
+        "cancheck": "unable"
+    },
+    {
+        "id": 10,
+        "lib": "scikit-learn",
+        "sha": "a0ba256dbe9380b5d2cf9cee133482fc87768267",
+        "issue_sha": "a0ba256dbe9380b5d2cf9cee133482fc87768267",
+        "issue_type": "addc",
+        "granularity": "class",
+        "filepath": "sklearn/ensemble/_bagging.py",
+        "docfrom": "BaggingClassifier",
+        "class": "BaseBagging",
+        "func": "_fit",
+        "exec_func": "_fit",
+        "params": [
+            "oob_score",
+            "bootstrap"
+        ],
+        "constraints": "(bootstrap = 'False') -> (oob_score != 'None')",
+        "oracle": "False",
+        "cancheck": "unable"
+    },
+    {
+        "id": 10,
+        "lib": "scikit-learn",
+        "sha": "a0ba256dbe9380b5d2cf9cee133482fc87768267",
+        "issue_sha": "a0ba256dbe9380b5d2cf9cee133482fc87768267",
+        "issue_type": "addc",
+        "granularity": "class",
+        "filepath": "sklearn/ensemble/_bagging.py",
+        "docfrom": "BaggingClassifier",
+        "class": "BaseBagging",
+        "func": "_fit",
+        "exec_func": "_fit",
+        "params": [
+            "oob_score",
+            "bootstrap"
+        ],
+        "constraints": "(bootstrap = 'True') -> (oob_score = 'None')",
+        "oracle": "False",
         "cancheck": "unable"
     },
     {
@@ -1016,6 +1416,46 @@
             "theta"
         ],
         "constraints": "(eval_gradient = 'True') -> (theta != 'None')",
+        "oracle": "True",
+        "cancheck": "able"
+    },
+    {
+        "id": 51,
+        "lib": "scikit-learn",
+        "sha": "62ce1bad329c59420e1f72a6e7a2635c9b1df265",
+        "issue_sha": "62ce1bad329c59420e1f72a6e7a2635c9b1df265",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/gaussian_process/_gpc.py",
+        "docfrom": "log_marginal_likelihood",
+        "class": "_BinaryGaussianProcessClassifierLaplace",
+        "func": "log_marginal_likelihood",
+        "exec_func": "log_marginal_likelihood",
+        "params": [
+            "eval_gradient",
+            "theta"
+        ],
+        "constraints": "(eval_gradient = 'True') -> (theta = 'None')",
+        "oracle": "False",
+        "cancheck": "able"
+    },
+    {
+        "id": 51,
+        "lib": "scikit-learn",
+        "sha": "62ce1bad329c59420e1f72a6e7a2635c9b1df265",
+        "issue_sha": "62ce1bad329c59420e1f72a6e7a2635c9b1df265",
+        "issue_type": "modify",
+        "granularity": "class",
+        "filepath": "sklearn/gaussian_process/_gpc.py",
+        "docfrom": "log_marginal_likelihood",
+        "class": "_BinaryGaussianProcessClassifierLaplace",
+        "func": "log_marginal_likelihood",
+        "exec_func": "log_marginal_likelihood",
+        "params": [
+            "eval_gradient",
+            "theta"
+        ],
+        "constraints": "(eval_gradient = 'False') -> (theta != 'None')",
         "oracle": "True",
         "cancheck": "able"
     },
