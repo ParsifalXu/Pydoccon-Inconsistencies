@@ -1035,7 +1035,7 @@
         "func": "in1d",
         "exec_func": "in1d",
         "params": ["kind", "s"],
-        "constraints": "(kind != 'table') -> (assume_unique = 'no effect')",
+        "constraints": "(kind = 'table') -> (assume_unique = 'no effect')",
         "oracle": "True",
         "cancheck": "unable"
     },
