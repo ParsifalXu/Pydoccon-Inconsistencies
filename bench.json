@@ -1003,7 +1003,7 @@
         "func": "fit",
         "exec_func": "fit",
         "params": ["cluster_method", "eps"],
-        "constraints": "(cluster_method = 'dbscan') -> (cluster_method = 'exist')",
+        "constraints": "(cluster_method = 'dbscan') -> (eps = 'exist')",
         "oracle": "True",
         "cancheck": "able"
     },
